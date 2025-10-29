@@ -1,26 +1,31 @@
 {
-	"id": "your-module-name",
-	"name": "your-module-name",
-	"shortname": "module-shortname",
-	"description": "A short one line description of your module",
-	"version": "0.0.0",
+	"id": "sevenpointaudio",
+	"name": "7pointaudio",
+	"shortname": "7PointAudio",
+	"description": "7 Point Audio plugin for Companion",
+	"version": "1.0.0",
 	"license": "MIT",
-	"repository": "git+https://github.com/bitfocus/companion-module-your-module-name.git",
-	"bugs": "https://github.com/bitfocus/companion-module-your-module-name/issues",
+	"repository": "git+https://github.com/7PointTechnologies/companion-module-sevenpointaudio.git",
+	"bugs": "https://github.com/7PointTechnologies/companion-module-sevenpointaudio/issues",
 	"maintainers": [
 		{
-			"name": "Your name",
-			"email": "Your email"
+			"name": "Jeff Ball",
+			"email": "jeffball@7pointaudio.com"
 		}
 	],
 	"runtime": {
 		"type": "node22",
 		"api": "nodejs-ipc",
 		"apiVersion": "0.0.0",
-		"entrypoint": "../main.js"
+		"entrypoint": "../sevenpointaudio.js"
 	},
 	"legacyIds": [],
-	"manufacturer": "Your company",
-	"products": ["Your product"],
-	"keywords": []
+	"manufacturer": "Seven Point Technologies, LLC",
+	"products": ["7 Point Audio"],
+	"keywords": [
+		"Remote",
+		"7 Point",
+		"Audio",
+      "Sports DJ"
+	]
 }
