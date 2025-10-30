@@ -1,4 +1,4 @@
-const { InstanceBase, Regex, runEntrypoint, InstanceStatus, UDPHelper } = require('@companion-module/base')
+const { InstanceBase, runEntrypoint, InstanceStatus, UDPHelper } = require('@companion-module/base')
 const UpgradeScripts = require('./src/upgrades')
 const UpdateActions = require('./src/actions')
 const UpdateConfigFields = require('./src/config')
