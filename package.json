@@ -1,6 +1,6 @@
 {
 	"name": "7pointaudio",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"main": "sevenpointaudio.js",
 	"scripts": {
 		"format": "prettier -w .",
