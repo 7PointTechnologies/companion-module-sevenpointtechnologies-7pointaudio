@@ -1,7 +1,7 @@
-const { Regex } = require('@companion-module/base')
 module.exports = function (self) {
-
-   const sendUDPMessage = (msg) => {
+   //Basic UDP send message
+   //NOTE: The UDP message does **NOT** end in a CR/LF
+   const sendUDPMessage = (msg, msgId) => {
       if (msg === undefined)
       {
          self.log('warn', 'Message is undefined')
@@ -16,199 +16,57 @@ module.exports = function (self) {
       }
    }
 
+   //Create a Toggle Action that is repeatable
+   const createToggleAction = (name, cmdName = "") => {
+      if (cmdName == "") {
+         cmdName = name.toLowerCase()
+      } else {
+         cmdName = cmdName.toLowerCase()
+      }
+
+      const stateId = cmdName + 'State'
+
+      return {
+         name: name,
+         options: [
+            {
+               type: 'dropdown',
+               label: `${name} Control`,
+               id: stateId,
+               default: 'toggle',
+               choices: [
+                  { id: 'toggle', label: `Toggle ${name}` },
+                  { id: 'on', label: `${name} On` },
+                  { id: 'off', label: `${name} Off` }
+               ]
+            }
+         ],
+         callback: async (event, context) => {
+            let opt = event.options
+            let cmd = cmdName
+
+            switch (opt[stateId]) {
+               case 'on':
+                  cmd += ' 1'
+                  break
+               case 'off':
+                  cmd += ' 0'
+                  break
+            }
+
+            self.log('debug', `${name} Command: ${cmd}`)
+            sendUDPMessage(cmd)
+         }
+      }
+   }
+
 	self.setActionDefinitions({
-      announcement: {
-         name: 'Announcement',
-         options: [
-            {
-               type: 'dropdown',
-               label: 'Announcement Control',
-               id: 'announceState',
-               default: 'toggle',
-               choices: [
-                  { id: 'toggle', label: 'Toggle Announcement' },
-                  { id: 'on', label: 'Announcement On' },
-                  { id: 'off', label: 'Announcement Off' }
-               ]
-            }
-         ],
-         callback: async (event, context) => {
-            let opt = event.options
-            let cmd = 'announcement'
-
-            switch (opt.announceState) {
-               case 'on':
-                  cmd += ' 1'
-                  break
-               case 'off':
-                  cmd += ' 0'
-                  break
-            }
-
-            self.log('debug', `Announcement Command: ${cmd}`)
-            sendUDPMessage(cmd)
-         }
-      },
-      compressor: {
-         name: 'Compressor',
-         options: [
-            {
-               type: 'dropdown',
-               label: 'Compressor Control',
-               id: 'compState',
-               default: 'toggle',
-               choices: [
-                  { id: 'toggle', label: 'Toggle Compressor' },
-                  { id: 'on', label: 'Compressor On' },
-                  { id: 'off', label: 'Compressor Off' }
-               ]
-            }
-         ],
-         callback: async (event, context) => {
-            let opt = event.options
-            let cmd = 'compressor'
-
-            switch (opt.compState) {
-               case 'on':
-                  cmd += ' 1'
-                  break
-               case 'off':
-                  cmd += ' 0'
-                  break
-            }
-
-            self.log('debug', `Compressor Command: ${cmd}`)
-            sendUDPMessage(cmd)
-         }
-      },
-      crossfade: {
-         name: 'Crossfade',
-         options: [
-            {
-               type: 'dropdown',
-               label: 'Default Crossfade',
-               id: 'cfState',
-               default: 'toggle',
-               choices: [
-                  { id: 'toggle', label: 'Toggle Crossfade Fade' },
-                  { id: 'on', label: 'Crossfade Fade On' },
-                  { id: 'off', label: 'Crossfade Fade Off' }
-               ]
-            }
-         ],
-         callback: async (event, context) => {
-            let opt = event.options
-            let cmd = 'crossfade'
-
-            switch (opt.cfState) {
-               case 'on':
-                  cmd += ' 1'
-                  break
-               case 'off':
-                  cmd += ' 0'
-                  break
-            }
-
-            self.log('debug', `Crossfade Command: ${cmd}`)
-            sendUDPMessage(cmd)
-         }
-      },
-      defaultfade: {
-         name: 'Default Fade',
-         options: [
-            {
-               type: 'dropdown',
-               label: 'Default Fade Control',
-               id: 'dfState',
-               default: 'toggle',
-               choices: [
-                  { id: 'toggle', label: 'Toggle Default Fade' },
-                  { id: 'on', label: 'Default Fade On' },
-                  { id: 'off', label: 'Default Fade Off' }
-               ]
-            }
-         ],
-         callback: async (event, context) => {
-            let opt = event.options
-            let cmd = 'defaultfade'
-
-            switch (opt.dfState) {
-               case 'on':
-                  cmd += ' 1'
-                  break
-               case 'off':
-                  cmd += ' 0'
-                  break
-            }
-
-            self.log('debug', `Default Fade Command: ${cmd}`)
-            sendUDPMessage(cmd)
-         }
-      },
-      equalizer: {
-         name: 'Equalizer',
-         options: [
-            {
-               type: 'dropdown',
-               label: 'Equalizer Control',
-               id: 'eqState',
-               default: 'toggle',
-               choices: [
-                  { id: 'toggle', label: 'Toggle Equalizer' },
-                  { id: 'on', label: 'Equalizer On' },
-                  { id: 'off', label: 'Equalizer Off' }
-               ]
-            }
-         ],
-         callback: async (event, context) => {
-            let opt = event.options
-            let cmd = 'equalizer'
-
-            switch (opt.eqState) {
-               case 'on':
-                  cmd += ' 1'
-                  break
-               case 'off':
-                  cmd += ' 0'
-                  break
-            }
-
-            self.log('debug', `Equalizer Command: ${cmd}`)
-            sendUDPMessage(cmd)
-         }
-      },
-      loop: {
-         name: 'Loop',
-         options: [
-            {
-               type: 'dropdown',
-               label: 'Loop Control',
-               id: 'loopState',
-               default: 'toggle',
-               choices: [
-                  { id: 'toggle', label: 'Toggle Loop' },
-                  { id: 'on', label: 'Loop On' },
-                  { id: 'off', label: 'Loop Off' }
-               ]
-            }
-         ],
-         callback: async (event, context) => {
-            let opt = event.options
-            let cmd = 'loop'
-
-            switch (opt.loopState) {
-               case 'on':
-                  cmd += ' 1'
-                  break
-               case 'off':
-                  cmd += ' 0'
-                  break
-            }
-
-            self.log('debug', `Loop Command: ${cmd}`)
-            sendUDPMessage(cmd)
-         }
-      },
+      announcement:  createToggleAction('Announcement'),
+      compressor:    createToggleAction('Compressor'),
+      crossfade:     createToggleAction('Crossfade'),
+      defaultfade:   createToggleAction('Default Fade', 'defaultfade'),
+      equalizer:     createToggleAction('Equalizer'),
+      loop:          createToggleAction('Loop'),
       pause: {
          name: 'Pause',
          options: [],
@@ -296,7 +154,7 @@ module.exports = function (self) {
             let vol = opt.volumelvl
             let cmd = `volume ${vol}`
 
-            self.log('debug', `Volume: ${vol}`)
+            self.log('debug', `Volume Command: ${vol}`)
             sendUDPMessage(cmd)
          }
       },
@@ -317,7 +175,7 @@ module.exports = function (self) {
             let vol = opt.volumelvl
             let cmd = `volumedown ${vol}`
 
-            self.log('debug', `Volume Down: ${vol}`)
+            self.log('debug', `Volume Down Command: ${vol}`)
             sendUDPMessage(cmd)
          }
       },
@@ -338,7 +196,7 @@ module.exports = function (self) {
             let vol = opt.volumelvl
             let cmd = `volumeup ${vol}`
 
-            self.log('debug', `Volume Up: ${vol}`)
+            self.log('debug', `Volume Up Command: ${vol}`)
             sendUDPMessage(cmd)
          }
       },
