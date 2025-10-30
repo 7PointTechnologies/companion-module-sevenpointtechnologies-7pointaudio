@@ -9,7 +9,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/7PointTechnologies/companion-module-sevenpointtechnologies-7pointaudio.git"
+		"url": "git+https://github.com/bitfocus/companion-module-sevenpointtechnologies-7pointaudio.git"
 	},
 	"dependencies": {
 		"@companion-module/base": "^1.5.0"

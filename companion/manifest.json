@@ -5,8 +5,8 @@
 	"description": "7 Point Audio plugin for Companion",
 	"version": "1.0.0",
 	"license": "MIT",
-	"repository": "git+https://github.com/7PointTechnologies/companion-module-sevenpointtechnologies-7pointaudio.git",
-	"bugs": "https://github.com/7PointTechnologies/companion-module-sevenpointtechnologies-7pointaudio/issues",
+	"repository": "git+https://github.com/bitfocus/companion-module-sevenpointtechnologies-7pointaudio.git",
+	"bugs": "https://github.com/bitfocus/companion-module-sevenpointtechnologies-7pointaudio/issues",
 	"maintainers": [
 		{
 			"name": "Jeff Ball",
@@ -22,10 +22,5 @@
 	"legacyIds": [],
 	"manufacturer": "Seven Point Technologies, LLC",
 	"products": ["7 Point Audio"],
-	"keywords": [
-		"Remote",
-		"7 Point",
-		"Audio",
-      "Sports DJ"
-	]
+	"keywords": ["Remote", "7 Point", "Audio", "Sports DJ"]
 }
