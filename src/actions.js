@@ -1,7 +1,7 @@
 module.exports = function (self) {
    //Basic UDP send message
    //NOTE: The UDP message does **NOT** end in a CR/LF
-   const sendUDPMessage = (msg, msgId) => {
+   const sendUDPMessage = (msg, msgId = "Sending UDP Message") => {
       if (msg === undefined)
       {
          self.log('warn', 'Message is undefined')
@@ -9,7 +9,9 @@ module.exports = function (self) {
       }
 
       if (self.udp) {
-         self.log('debug', `Sending UDP Message: ${msg}`)
+         //No matter what I try the debug message is never logged; change to info to see messages
+         //Of the opinion this message is too verbose for info level logging
+         self.log('debug', `${msgId}: ${msg}`)
          self.udp.send(msg)
       } else {
          self.log('warn', 'UDP not initialized')
@@ -54,8 +56,7 @@ module.exports = function (self) {
                   break
             }
 
-            self.log('debug', `${name} Command: ${cmd}`)
-            sendUDPMessage(cmd)
+            sendUDPMessage(cmd, `${name} Command`)
          }
       }
    }
@@ -72,8 +73,7 @@ module.exports = function (self) {
          options: [],
          callback: async (event) => {
             let cmd = 'pause'
-            self.log('debug', 'Pause Command')
-            sendUDPMessage(cmd)
+            sendUDPMessage(cmd, 'Pause Command')
          }
       },
       play: {
@@ -81,8 +81,7 @@ module.exports = function (self) {
          options: [],
          callback: async (event) => {
             let cmd = 'play'
-            self.log('debug', 'Play Command')
-            sendUDPMessage(cmd)
+            sendUDPMessage(cmd, 'Play Command')
          }
       },
       playbutton: {
@@ -106,8 +105,7 @@ module.exports = function (self) {
             let sos = opt.sos ? 1 : 0
             let cmd = `playbutton ${buttonId} ${sos}`
 
-            self.log('debug', `Play Button: ${buttonId}`)
-            sendUDPMessage(cmd)
+            sendUDPMessage(cmd, `Play Button ${buttonId} Command`)
          }
       },
       rewind: {
@@ -115,8 +113,7 @@ module.exports = function (self) {
          options: [],
          callback: async (event) => {
             let cmd = 'rewind'
-            self.log('debug', 'Rewind Command')
-            sendUDPMessage(cmd)
+            sendUDPMessage(cmd, 'Rewind Command')
          }
       },
       stop: {
@@ -124,8 +121,7 @@ module.exports = function (self) {
          options: [],
          callback: async (event) => {
             let cmd = 'stop'
-            self.log('debug', 'Stop Command')
-            sendUDPMessage(cmd)
+            sendUDPMessage(cmd, 'Stop Command')
          }
       },
       stopall: {
@@ -133,8 +129,7 @@ module.exports = function (self) {
         options: [],
         callback: async (event) => {
             let cmd = 'stopall'
-            self.log('debug', 'Stop All Command')
-            sendUDPMessage(cmd)
+            sendUDPMessage(cmd, 'Stop All Command')
         } 
       },
       volume: {
@@ -154,8 +149,7 @@ module.exports = function (self) {
             let vol = opt.volumelvl
             let cmd = `volume ${vol}`
 
-            self.log('debug', `Volume Command: ${vol}`)
-            sendUDPMessage(cmd)
+            sendUDPMessage(cmd, `Volume ${vol} Command`)
          }
       },
       volumedown: {
@@ -175,8 +169,7 @@ module.exports = function (self) {
             let vol = opt.volumelvl
             let cmd = `volumedown ${vol}`
 
-            self.log('debug', `Volume Down Command: ${vol}`)
-            sendUDPMessage(cmd)
+            sendUDPMessage(cmd, `Volume Down ${vol} Command`)
          }
       },
       volumeup: {
@@ -196,8 +189,7 @@ module.exports = function (self) {
             let vol = opt.volumelvl
             let cmd = `volumeup ${vol}`
 
-            self.log('debug', `Volume Up Command: ${vol}`)
-            sendUDPMessage(cmd)
+            sendUDPMessage(cmd, `Volume Up ${vol} Command`)
          }
       },
 	})
