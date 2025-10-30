@@ -1,6 +1,6 @@
 {
 	"id": "7pointaudio",
-	"name": "companion-module-sevenpointtechnologies-7pointaudio",
+	"name": "bitfocus/companion-module-sevenpointtechnologies-7pointaudio",
 	"shortname": "7PointAudio",
 	"description": "7 Point Audio plugin for Companion",
 	"version": "1.0.0",
