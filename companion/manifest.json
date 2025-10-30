@@ -1,12 +1,12 @@
 {
-	"id": "sevenpointaudio",
+	"id": "7pointaudio",
 	"name": "7pointaudio",
 	"shortname": "7PointAudio",
 	"description": "7 Point Audio plugin for Companion",
 	"version": "1.0.0",
 	"license": "MIT",
-	"repository": "git+https://github.com/7PointTechnologies/companion-module-sevenpointaudio.git",
-	"bugs": "https://github.com/7PointTechnologies/companion-module-sevenpointaudio/issues",
+	"repository": "git+https://github.com/7PointTechnologies/companion-module-sevenpointtechnologies-7pointaudio.git",
+	"bugs": "https://github.com/7PointTechnologies/companion-module-sevenpointtechnologies-7pointaudio/issues",
 	"maintainers": [
 		{
 			"name": "Jeff Ball",
