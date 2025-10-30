@@ -2,6 +2,10 @@
 	"name": "7pointaudio",
 	"version": "1.0.0",
 	"main": "sevenpointaudio.js",
+	"scripts": {
+		"format": "prettier -w .",
+		"package": "companion-module-build"
+	},
 	"license": "MIT",
 	"repository": {
 		"type": "git",
@@ -11,7 +15,10 @@
 		"@companion-module/base": "^1.5.0"
 	},
 	"devDependencies": {
-		"@companion-module/tools": "^2.3.0"
-	
-	}
+		"@companion-module/tools": "^2.3.0",
+		"eslint": "^9.38.0",
+		"prettier": "^3.6.2"
+	},
+	"prettier": "@companion-module/tools/.prettierrc.json",
+	"packageManager": "yarn@4.9.1"
 }
