@@ -115,6 +115,14 @@ module.exports = function (self) {
 				sendUDPMessage(cmd, 'Rewind Command')
 			},
 		},
+      startPlaylist: {
+			name: 'Start Playlist',
+			options: [],
+			callback: async (event) => {
+				let cmd = 'startplaylist'
+				sendUDPMessage(cmd, 'Start Playlist')
+			},
+		},
 		stop: {
 			name: 'Stop',
 			options: [],
@@ -129,6 +137,14 @@ module.exports = function (self) {
 			callback: async (event) => {
 				let cmd = 'stopall'
 				sendUDPMessage(cmd, 'Stop All Command')
+			},
+		},
+		stopplaylist: {
+			name: 'Stop Playlist',
+			options: [],
+			callback: async (event) => {
+				let cmd = 'stopplaylist'
+				sendUDPMessage(cmd, 'Stop Playlist')
 			},
 		},
 		volume: {
